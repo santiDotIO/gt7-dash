@@ -1,0 +1,201 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-size: 2rem;
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.rpm-lights {
+    display: flex;
+    justify-content: center;
+    padding: 1rem;
+}
+
+.rpm-lights .rpm-dot {
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 100%;
+    background-color: #ccc;
+    margin: 0 0.5rem;
+}
+
+/* First 5 children */
+.rpm-lights>.rpm-dot.active:nth-child(-n+5) {
+    background-color: green;
+}
+
+/* Middle 5 children (assuming even number of children) */
+/* This approach won't work perfectly for odd number of children */
+.rpm-lights>.rpm-dot.active:nth-child(n+6) {
+    background-color: red;
+}
+
+/* Last 5 children */
+.rpm-lights>.rpm-dot.active:nth-last-child(-n+5) {
+    background-color: purple !important;
+}
+
+.dash {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);  /* Defines 12 columns of equal width */
+    grid-template-rows: repeat(1, auto);
+    gap: 1rem;
+    padding: 0 1rem;
+}
+
+.column.center {
+    grid-column: span 6;  
+    padding: 0 4rem;
+}
+
+.column.side {
+    grid-column: span 3;  
+}
+
+.tyres {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, auto);
+    gap: 1rem;
+    width: 90%;
+    margin: 0 auto;
+}
+
+.tyre {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* width: 5rem; */
+    height: 8rem;
+    background-color: #ccc;
+    /* margin: 0 16px; */
+}
+
+.type.blue {
+    background-color: blue;
+}
+.type.green {
+    background-color: green;
+}
+.type.yellow {
+    background-color: yellow;
+}
+.type.orange {
+    background-color: orange;
+}
+.type.red {
+    background-color: red;
+}
+
+.fuel {
+    /* font-size: 16px; */
+    padding-top: 1rem;
+    text-align: center;
+}
+
+.rpm-num, .speed {
+    text-align: right;
+}
+
+.gear-throttle-brake {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 14rem;
+    width: 100%;
+    padding: 0.5rem 0;
+}
+
+.pedals {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 3rem;
+    border: 1px solid black;
+    position: relative;
+}
+
+.pedals::before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 50%;
+    height: 1px;
+    width: 80%;
+    background-color: black;
+}
+.pedals#throttle::before {
+    left: 0;
+}
+.pedals#brake::before {
+    right: 0;
+}
+
+.pedal-pressure {
+    height: 100%;
+    width: 90%;
+    transform: scaleY(0);
+    transform-origin: bottom;
+}
+
+#throttle .pedal-pressure {
+    background-color: rgb(16, 119, 16);
+}
+#brake .pedal-pressure {
+    background-color: rgb(179, 9, 9);
+}
+
+.gears {
+    padding: 1rem 1rem;
+    display: flex;
+    align-items: center;
+}
+
+.current-gear {
+    font-size: 7rem;
+    padding: 0 1rem;
+    font-weight: bold;
+    text-align: center;
+}
+
+.recommended-down-gear {
+    text-align: center;
+    color: red;
+}
+
+.recommended-down-gear:after {
+    content: "\25be\25be\25be";
+    writing-mode: vertical-rl;
+    display: block;
+    font-size: 1rem;
+    line-height: 1rem;
+}
+
+.recommended-up-gear {
+    text-align: center;
+    color: green;
+}
+
+.recommended-up-gear:after {
+    transform: rotate(180deg);
+    content: "\25be\25be\25be";
+    writing-mode: vertical-rl;
+    display: block;
+    font-size: 1rem;
+    line-height: 1rem;
+}
+
+.position .label{
+    margin: 0 0;
+    /* margin-bottom: ; */
+}
+.position .value, .laps .value {
+    text-align: right;
+}

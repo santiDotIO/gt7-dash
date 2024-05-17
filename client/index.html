@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/stlye.css">
+    <script src="/index.js" defer></script>
+</head>
+<body>
+    <div class="container">
+        <div class="rpm-lights">
+            <div class="rpm-dot"></div>
+            <div class="rpm-dot"></div>
+            <div class="rpm-dot"></div>
+            <div class="rpm-dot"></div>
+            <div class="rpm-dot"></div>
+            <div class="rpm-dot"></div>
+            <div class="rpm-dot"></div>
+            <div class="rpm-dot"></div>
+            <div class="rpm-dot"></div>
+            <div class="rpm-dot"></div>
+            <div class="rpm-dot"></div>
+            <div class="rpm-dot"></div>
+            <div class="rpm-dot"></div>
+            <div class="rpm-dot"></div>
+            <div class="rpm-dot"></div>
+        </div>
+        <div class="dash">
+            <div class="column side">
+                <div class="tyres">
+                    <div class="tyre" id="fl"></div>
+                    <div class="tyre" id="fr"></div>
+                    <div class="tyre" id="rl"></div>
+                    <div class="tyre" id="rr"></div>
+                </div>
+                <div class="fuel">
+                    <span>Fuel</span>: <span id="fuel">0</span>%
+                </div>
+            </div>
+            <div class="column center">
+                <div class="rpm-num">
+                    <span id="rpm">0</span>
+                    <span>rpm</span>
+                </div>
+                <div class="gear-throttle-brake">
+                    <div class="pedals" id="brake">
+                        <div class="pedal-pressure"></div>
+                    </div>
+                    <div class="gears">
+                        <div class="recommended-down-gear">
+                            <span>0</span>
+                        </div>
+                        <div class="current-gear">
+                            <span>0</span>
+                        </div>
+                        <div class="recommended-up-gear">
+                            <span>0</span>
+                        </div>
+                    </div>
+                    <div class="pedals" id="throttle">
+                        <div class="pedal-pressure"></div>
+                    </div>
+                </div>
+                <div class="speed">
+                    <span id="speed">0</span> mp/h
+                </div>
+            </div>
+            <div class="column side">
+                <div class="position">
+                    <p class="label">Position</p>
+                    <div class="value">
+                        <span class="current">0</span>/<span class="total">0</span>
+                    </div>
+                </div>
+                <div class="laps">
+                    <p class="label">Lap</p>
+                    <div class="value">
+                        <span class="current">0</span>/<span class="total">0</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
