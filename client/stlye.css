@@ -1,3 +1,9 @@
+@keyframes blink {
+0% { opacity: 1; }
+50% { opacity: 0; }
+100% { opacity: 1; }
+}
+
 body {
     margin: 0;
     padding: 0;
@@ -20,26 +26,32 @@ body {
 }
 
 .rpm-lights .rpm-dot {
-    width: 1.5rem;
-    height: 1.5rem;
-    border-radius: 100%;
+    width: 5rem;
+    height: 1rem;
+    border-radius: 10%;
     background-color: #fff;
     margin: 0 0.5rem;
 }
 
+.rpm-lights.blink .rpm-dot {
+    animation: blink 150ms ease-in-out infinite;
+}
+
 /* First 5 children */
-.rpm-lights>.rpm-dot.active:nth-child(-n+5) {
+.rpm-lights>.rpm-dot.active:nth-child(-n+10) {
     background-color: #018101;
 }
 
 /* Middle 5 children (assuming even number of children) */
 /* This approach won't work perfectly for odd number of children */
-.rpm-lights>.rpm-dot.active:nth-child(n+6) {
+.rpm-lights>.rpm-dot.active:nth-child(n+11) {
     background-color: #ff0000;
+    /* background-color: #800080; */
 }
 
 /* Last 5 children */
-.rpm-lights>.rpm-dot.active:nth-last-child(-n+5) {
+.rpm-lights>.rpm-dot.active:nth-last-child(-n+2) {
+    /* background-color: #ff0000; */
     background-color: #800080 !important;
 }
 
@@ -53,7 +65,7 @@ body {
 
 .column.center {
     grid-column: span 6;  
-    padding: 0 4rem;
+    /* padding: 0 4rem; */
 }
 
 .column.side {
@@ -103,6 +115,7 @@ body {
 
 .rpm-num, .speed {
     text-align: right;
+    margin-right: 6rem;
 }
 
 .gear-throttle-brake {
@@ -155,48 +168,68 @@ body {
 }
 
 .gears {
-    padding: 1rem 1rem;
+    padding: 0.5rem;
     display: flex;
     align-items: center;
 }
 
 .current-gear {
     font-size: 7rem;
-    padding: 0 1rem;
+    padding: 0 0.5rem;
     font-weight: bold;
     text-align: center;
 }
 
-.recommended-down-gear {
+.recommended {
     text-align: center;
-    color: #ff0000;
+    font-weight: bold;
+    padding: 1rem;
+    font-size: 3rem;
 }
 
-.recommended-down-gear:after {
-    content: "\25be\25be\25be";
+.recommended.down-gear {
+    color: #000;
+    background-color: #ff0000;
+}
+.recommended:after {
     writing-mode: vertical-rl;
-    display: block;
+    display: none;
     font-size: 1rem;
     line-height: 1rem;
 }
 
-.recommended-up-gear {
-    text-align: center;
-    color: #008000;
+.recommended.down-gear:after {
+    content: "\25be\25be\25be";
 }
 
-.recommended-up-gear:after {
+.recommended.up-gear {
+    text-align: center;
+    color: #000;
+    background-color: #008000;
+}
+
+.recommended.up-gear:after {
     transform: rotate(180deg);
     content: "\25be\25be\25be";
-    writing-mode: vertical-rl;
-    display: block;
-    font-size: 1rem;
-    line-height: 1rem;
 }
 
-.position .label{
+.race-info:not(:last-child) {
+    margin-bottom: 1rem;
+}
+
+.race-info .label{
     margin: 0;
 }
-.position .value, .laps .value {
+
+.race-info .value {
     text-align: right;
+}
+.clock.race-info .value {
+    text-align: right;
+}
+
+.laps.race-info {
+    display: flex;
+
+    justify-content: space-between;
 }

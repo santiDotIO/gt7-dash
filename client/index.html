@@ -6,8 +6,29 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
 
     <title>Race Dashboard</title>
-    <link rel="stylesheet" href="/stlye.css?4">
-    <script src="/index.js?7" defer></script>
+    <!-- <link rel="stylesheet" href="/stlye.css?v=9">
+    <script src="/index.js?v=15" defer></script> -->
+    <script>
+        (function() {
+          const timestamp = Date.now();
+          const head = document.head;
+        
+          // Create link element with timestamp
+          const link = document.createElement('link');
+          link.rel = 'stylesheet';
+          link.href = '/stlye.css?v=' + timestamp;
+        
+          // Create script element with timestamp and defer attribute
+          const script = document.createElement('script');
+          script.src = '/index.js?v=' + timestamp;
+          script.defer = true;
+        
+          // Append elements to the head
+          head.appendChild(link);
+          head.appendChild(script);
+        })();
+        </script>
+        
 </head>
 <body>
     <div class="container">
@@ -51,13 +72,13 @@
                         <div class="pedal-pressure"></div>
                     </div>
                     <div class="gears">
-                        <div class="recommended-down-gear">
+                        <div class="recommended down-gear">
                             <span>0</span>
                         </div>
                         <div class="current-gear">
                             <span>0</span>
                         </div>
-                        <div class="recommended-up-gear">
+                        <div class="recommended up-gear">
                             <span>0</span>
                         </div>
                     </div>
@@ -70,16 +91,28 @@
                 </div>
             </div>
             <div class="column side">
-                <div class="position">
-                    <p class="label">Position</p>
+                <div class="laps race-info">
+                    <p class="label">Lap</p>
                     <div class="value">
                         <span class="current">0</span>/<span class="total">0</span>
                     </div>
                 </div>
-                <div class="laps">
-                    <p class="label">Lap</p>
+                <div class="best-lap race-info">
+                    <p class="label">Best Lap</p>
                     <div class="value">
-                        <span class="current">0</span>/<span class="total">0</span>
+                        <span class="current">00:00.000</span>
+                    </div>
+                </div>
+                <div class="last-lap race-info">
+                    <p class="label">Last Lap</p>
+                    <div class="value">
+                        <span class="current">00:00.000</span>
+                    </div>
+                </div>
+                <div class="clock race-info">
+                    <p class="label">Time</p>
+                    <div class="value">
+                        00:00:00
                     </div>
                 </div>
             </div>
