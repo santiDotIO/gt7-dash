@@ -1,0 +1,46 @@
+version: '3.8'
+
+services:
+  nginx:
+    image: nginx:alpine
+    container_name: gt7-dash-client
+    depends_on:
+      - server
+    volumes:
+      - ./client:/usr/share/nginx/html:ro
+    networks:
+      gt7-dash:
+    restart: unless-stopped
+
+  server:
+    container_name: gt7-dash-server
+    build:
+      context: .
+      dockerfile: server.Dockerfile
+    ports:
+      - "9527:9527"
+      - "443:443"
+      - "33739:33739"
+      - "33740:33740/udp"
+    volumes:
+      - ./dist:/app/dist
+    environment:
+      PLAYSTAION_IP: ${PLAYSTAION_IP}
+    networks:
+      gt7-dash:
+    restart: unless-stopped
+  
+  cloudflare-tunnel:
+    image: cloudflare/cloudflared:latest
+    container_name: gt7-dash-tunnel
+    environment:
+      TUNNEL_TOKEN: ${TUNNEL_TOKEN}
+    volumes:
+      - ./config.yml:/app
+    command: tunnel run
+    networks:
+      gt7-dash:
+    restart: unless-stopped
+
+networks:
+  gt7-dash:
