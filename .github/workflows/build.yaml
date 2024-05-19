@@ -22,36 +22,23 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
 
       # Build and push gt7-dash-server image
-      - name: Extract metadata (tags, labels) for gt7-dash-server
-        id: server_meta
-        uses: docker/metadata-action@8e5442c4ef9f78752691e2d8f8d19755c6f78e81
-        with:
-          images: ghcr.io/${{ github.repository }}/gt7-dash-server
-
-      - name: Build and push Docker image (gt7-dash-server)
-        id: push_server
+      - name: Build and push gt7-dash-server image
         uses: docker/build-push-action@2cdde995de11925a030ce8070c3d77a52ffcf1c0
         with:
-          context: .
+          context: .  # Build context is the current directory
           push: true
-          tags: ${{ steps.server_meta.outputs.tags }}
-          labels: ${{ steps.server_meta.outputs.labels }}
+          tags: ghcr.io/${{ github.repository }}/gt7-dash-server:latest
+          file: Dockerfile.server  # Specify Dockerfile name
 
       # Build and push gt7-dash-client image
-      - name: Extract metadata (tags, labels) for gt7-dash-client
-        id: client_meta
-        uses: docker/metadata-action@8e5442c4ef9f78752691e2d8f8d19755c6f78e81
+      - name: Build and push gt7-dash-client image
+        uses: docker/build-push-action@2cdde995de11925a030ce8070c3d77a52ffcf1c0
         with:
-          images: ghcr.io/${{ github.repository }}/gt7-dash-client
-
-      - name: Build and push Docker image (gt7-dash-client)
-        id: push_client
-        uses: docker/build-push-action@f2a1d5e99d037542a71f64918e516c093c6f3fc4
-        with:
-          context: .
+          context: .  # Build context is the current directory
           push: true
-          tags: ${{ steps.client_meta.outputs.tags }}
-          labels: ${{ steps.client_meta.outputs.labels }}
+          tags: ghcr.io/${{ github.repository }}/gt7-dash-client:latest
+          file: Dockerfile.client  # Specify Dockerfile name
+
 
       - name: Generate artifact attestation
         uses: actions/attest-build-provenance@v1

@@ -24,6 +24,7 @@ services:
       - "33740:33740/udp"
     volumes:
       - ./dist:/app/dist
+      - ./certs:/app/certs
     environment:
       PLAYSTAION_IP: ${PLAYSTAION_IP}
     networks:

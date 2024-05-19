@@ -6,8 +6,6 @@ services:
     container_name: gt7-dash-client
     depends_on:
       - server
-    # volumes:
-    #   - ./client:/usr/share/nginx/html:ro
     networks:
       gt7-dash:
     restart: unless-stopped
@@ -22,6 +20,8 @@ services:
       - "33740:33740/udp"
     environment:
       PLAYSTAION_IP: ${PLAYSTAION_IP}
+    volumes:
+      - ./certs:/app/certs
     networks:
       gt7-dash:
     restart: unless-stopped
