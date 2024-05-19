@@ -21,8 +21,6 @@ http.createServer((req, res) => {
       contentType = 'text/javascript';
       break;
   }
-  console.log('__dirname:', );
-
   fs.readFile(filePath, (err, content) => {
     if (err) {
       // Handle errors, like file not found
@@ -30,7 +28,13 @@ http.createServer((req, res) => {
       res.statusCode = 404;
       res.end('File not found!');
     } else {
-      res.writeHead(200, { 'Content-Type': contentType });
+      // res.writeHead(200, { 'Content-Type': contentType });
+      res.writeHead(200, {
+        'Content-Type': contentType,
+        'Cache-Control': 'no-cache, no-store, must-revalidate',
+        'Pragma': 'no-cache',
+        'Expires': 0,
+      });
       res.end(content);
     }
   });
