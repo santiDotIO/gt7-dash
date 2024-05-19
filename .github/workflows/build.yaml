@@ -17,6 +17,7 @@ jobs:
       - name: Log in to Container registry (ghcr.io)
         uses: docker/login-action@e92390c5fb421da1463c202d546fed0ec5c39f20
         with:
+          registry: ${{ env.REGISTRY }}
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
@@ -25,7 +26,7 @@ jobs:
         id: server_meta
         uses: docker/metadata-action@8e5442c4ef9f78752691e2d8f8d19755c6f78e81
         with:
-          images: ghcr.io/${{ github.repository }}/gt7-dash-server
+          images: ${{ env.REGISTRY }}/${{ github.repository }}/gt7-dash-server
 
       - name: Build and push Docker image (gt7-dash-server)
         id: push_server
@@ -41,7 +42,7 @@ jobs:
         id: client_meta
         uses: docker/metadata-action@8e5442c4ef9f78752691e2d8f8d19755c6f78e81
         with:
-          images: ghcr.io/${{ github.repository }}/gt7-dash-client
+          images: ${{ env.REGISTRY }}/${{ github.repository }}/gt7-dash-client
 
       - name: Build and push Docker image (gt7-dash-client)
         id: push_client
@@ -55,7 +56,7 @@ jobs:
       - name: Generate artifact attestation
         uses: actions/attest-build-provenance@v1
         with:
-          subject-name: ghcr.io/${{ github.repository }}/gt7-dash-server:${{ steps.push_server.outputs.digest }}
+          subject-name: ${{ env.REGISTRY }}/${{ github.repository }}/gt7-dash-server:${{ steps.push_server.outputs.digest }}
           subject-digest: ${{ steps.push_server.outputs.digest }}
           push-to-registry: true
         # Repeat for gt7-dash-client attestation
