@@ -1,5 +1,5 @@
 // Create a WebSocket connection
-const ws = new WebSocket("ws://localhost:9527");
+const ws = new WebSocket(`wss://${location.host.replace('gt7', 'gt7ws')}`);
 const  calculateRpmDots = (minAlertRPM, maxAlertRPM, engineRPM, numDots) => {
   const modLowRpm = minAlertRPM - 1000;
   const rpmRange = maxAlertRPM - modLowRpm
@@ -28,12 +28,14 @@ const calculateTyreTemp = (tempNum) => {
 }
 // Handle connection open event
 ws.onopen = function(event) {
-  console.log("WebSocket connection opened!");
+  console.log("WebSocket connection opened!"), {event};
 };
 
 // Handle connection error event
 ws.onerror = function(error) {
   console.error("WebSocket connection error:", error);
+  document.querySelector("#error").innerHTML = JSON.stringify(error, null, 2);
+  // alert("WebSocket connection error. Please reload the page.");
 };
 
 // Handle incoming messages from the server
@@ -104,5 +106,5 @@ ws.onmessage = function(event) {
 
 // Handle connection close event
 ws.onclose = function(event) {
-  console.log("WebSocket connection closed:", event.code, event.reason);
+  console.log("WebSocket connection closed:", event);
 };

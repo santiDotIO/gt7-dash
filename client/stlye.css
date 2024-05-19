@@ -3,6 +3,8 @@ body {
     padding: 0;
     font-size: 2rem;
     font-family: Arial, sans-serif;
+    background-color: rgb(0, 0, 0);
+    color: #fff;
 }
 
 .container {
@@ -21,24 +23,24 @@ body {
     width: 1.5rem;
     height: 1.5rem;
     border-radius: 100%;
-    background-color: #ccc;
+    background-color: #fff;
     margin: 0 0.5rem;
 }
 
 /* First 5 children */
 .rpm-lights>.rpm-dot.active:nth-child(-n+5) {
-    background-color: green;
+    background-color: #018101;
 }
 
 /* Middle 5 children (assuming even number of children) */
 /* This approach won't work perfectly for odd number of children */
 .rpm-lights>.rpm-dot.active:nth-child(n+6) {
-    background-color: red;
+    background-color: #ff0000;
 }
 
 /* Last 5 children */
 .rpm-lights>.rpm-dot.active:nth-last-child(-n+5) {
-    background-color: purple !important;
+    background-color: #800080 !important;
 }
 
 .dash {
@@ -73,24 +75,24 @@ body {
     align-items: center;
     /* width: 5rem; */
     height: 8rem;
-    background-color: #ccc;
+    background-color: #fff;
     /* margin: 0 16px; */
 }
 
 .type.blue {
-    background-color: blue;
+    background-color: #0000ff;
 }
 .type.green {
-    background-color: green;
+    background-color: #008000;
 }
 .type.yellow {
-    background-color: yellow;
+    background-color: #ffff00;
 }
 .type.orange {
-    background-color: orange;
+    background-color: #ffa500;
 }
 .type.red {
-    background-color: red;
+    background-color: #ff0000;
 }
 
 .fuel {
@@ -118,7 +120,7 @@ body {
     align-items: center;
     height: 100%;
     width: 3rem;
-    border: 1px solid black;
+    border: 1px solid #ffffff;
     position: relative;
 }
 
@@ -129,7 +131,7 @@ body {
     top: 50%;
     height: 1px;
     width: 80%;
-    background-color: black;
+    background-color: #ffffff;
 }
 .pedals#throttle::before {
     left: 0;
@@ -146,10 +148,10 @@ body {
 }
 
 #throttle .pedal-pressure {
-    background-color: rgb(16, 119, 16);
+    background-color: #107710;
 }
 #brake .pedal-pressure {
-    background-color: rgb(179, 9, 9);
+    background-color: #b30909;
 }
 
 .gears {
@@ -167,7 +169,7 @@ body {
 
 .recommended-down-gear {
     text-align: center;
-    color: red;
+    color: #ff0000;
 }
 
 .recommended-down-gear:after {
@@ -180,7 +182,7 @@ body {
 
 .recommended-up-gear {
     text-align: center;
-    color: green;
+    color: #008000;
 }
 
 .recommended-up-gear:after {
@@ -193,8 +195,7 @@ body {
 }
 
 .position .label{
-    margin: 0 0;
-    /* margin-bottom: ; */
+    margin: 0;
 }
 .position .value, .laps .value {
     text-align: right;
