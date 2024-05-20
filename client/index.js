@@ -159,7 +159,7 @@ const reconnectToWS = () => {
     ws.onopen = () => {
       console.log("WebSocket connection opened!");
       document.querySelector("#error").style.display = 'none';
-      document.querySelector("#error").innerHTML = '';
+      document.querySelector("#error .message").innerHTML = '';
     };
 
     ws.onclose = () => {
