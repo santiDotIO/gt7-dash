@@ -92,19 +92,19 @@ const updateDashboard = (event) => {
   // tyre temp
   const fl = document.querySelector("#fl")
   fl.innerText = `${Math.round(data.tireSurfaceTemperature.FrontLeft)}c`
-  fl.style.setAttribute('data-color', calculateTyreTemp(data.tireSurfaceTemperature.FrontLeft))
+  fl.setAttribute('data-color', calculateTyreTemp(data.tireSurfaceTemperature.FrontLeft))
   
   const fr = document.querySelector("#fr")
   fr.innerText = `${Math.round(data.tireSurfaceTemperature.FrontRight)}c`
-  fr.style.setAttribute('data-color', calculateTyreTemp(data.tireSurfaceTemperature.FrontRight))
+  fr.setAttribute('data-color', calculateTyreTemp(data.tireSurfaceTemperature.FrontRight))
   
   const rl = document.querySelector("#rl")
   rl.innerText = `${Math.round(data.tireSurfaceTemperature.RearLeft)}c`
-  rl.style.setAttribute('data-color', calculateTyreTemp(data.tireSurfaceTemperature.RearLeft))
+  rl.setAttribute('data-color', calculateTyreTemp(data.tireSurfaceTemperature.RearLeft))
 
   const rr = document.querySelector("#rr")
   rr.innerText = `${Math.round(data.tireSurfaceTemperature.RearRight)}c`
-  rr.style.setAttribute('data-color', calculateTyreTemp(data.tireSurfaceTemperature.RearRight))
+  rr.setAttribute('data-color', calculateTyreTemp(data.tireSurfaceTemperature.RearRight))
   
   document.querySelector(".laps .current").innerText = data.lapCount
   document.querySelector(".laps .total").innerText = totalLapCountFormat(data.lapsInRace)
@@ -173,6 +173,8 @@ const reconnectToWS = () => {
         console.error("Failed to connect to WebSocket after", maxRetries, "attempts.");
       }
     };
+
+    ws.onmessage = updateDashboard;
   };
 
   connect();
