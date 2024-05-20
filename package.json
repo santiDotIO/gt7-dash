@@ -2,7 +2,7 @@
   "name": "gt7-dash-server",
   "scripts": {
     "build": "tsc",
-    "start": "node ./dist/index.js"
+    "start": "tsc -w"
   },
   "license": "ISC",
   "dependencies": {

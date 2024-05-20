@@ -29,6 +29,7 @@ jobs:
           push: true
           tags: ghcr.io/santidotio/gt7-dash/server:latest
           file: Dockerfile.server  # Specify Dockerfile name
+          target: production  # Specify build target
 
       # Build and push gt7-dash-client image
       - name: Build and push gt7-dash-client image
