@@ -1,6 +1,3 @@
-// Create a WebSocket connection
-const ws = new WebSocket(`wss://${location.host.replace('gt7', 'gt7ws')}`);
-
 const lightUpShiftPoints = (rpm, revLimit, earlyLights, optimalLights, limitLights) => {
   const numLights = earlyLights + optimalLights + limitLights;
   // Handle invalid input (negative values, lights exceeding total)
@@ -86,20 +83,7 @@ const totalLapCountFormat = (l) => {
   else return l;
 };
 
-// Handle connection open event
-ws.onopen = function(event) {
-  console.log("WebSocket connection opened!");
-  document.querySelector("#error").innerHTML = '';
-};
-
-// Handle connection error event
-ws.onerror = function(error) {
-  console.error("WebSocket connection error:", error);
-  document.querySelector("#error").innerHTML = `WebSocket connection error: ${JSON.stringify(error, null, 2)}`;
-};
-
-// Handle incoming messages from the server
-ws.onmessage = function(event) {
+const updateDashboard = (event) => {
   const data = JSON.parse(event.data);
   
   document.querySelector("#rpm").innerText = Math.round(data.engineRPM)
@@ -165,9 +149,34 @@ ws.onmessage = function(event) {
   });
 };
 
-// Handle connection close event
-ws.onclose = function(event) {
-  console.log("WebSocket connection closed:", event);
-};
+const reconnectToWS = () => {
+  const maxRetries = 5;
+  let currentAttempt = 0;
 
-setInterval(() => formatTime(), 10000);
+  const connect = () => {
+    const ws = new WebSocket(`wss://${location.host.replace('gt7', 'gt7ws')}`);
+
+    ws.onopen = () => {
+      console.log("WebSocket connection opened!");
+      document.querySelector("#error").style.display = 'none';
+      document.querySelector("#error").innerHTML = '';
+    };
+
+    ws.onclose = () => {
+      document.querySelector("#error").style.display = 'block';
+      if (currentAttempt < maxRetries) {
+        currentAttempt++;
+        document.querySelector("#error .message").innerHTML = `WebSocket connection closed. Reconnecting... (attempt ${currentAttempt}/${maxRetries})`
+        setTimeout(connect, 1000);
+      } else {
+        document.querySelector("#error .message").innerHTML = `WebSocket connection error`
+        console.error("Failed to connect to WebSocket after", maxRetries, "attempts.");
+      }
+    };
+  };
+
+  connect();
+}
+
+setInterval(formatTime(), 10000);
+reconnectToWS();

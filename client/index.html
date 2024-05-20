@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
+    <link rel="manifest" href="/manifest.json">
 
     <title>Race Dashboard</title>
     <!-- <link rel="stylesheet" href="/stlye.css?v=9">
@@ -32,7 +33,10 @@
 </head>
 <body>
     <div class="container">
-        <div id="error"></div>
+        <div id="error">
+            <span class="message"></span>
+            <button onclick="location.reload()">Reload Page</button>
+        </div>
         <div class="rpm-lights">
             <div class="rpm-dot"></div>
             <div class="rpm-dot"></div>
