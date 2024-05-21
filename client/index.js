@@ -51,7 +51,7 @@ const timeFormat = (t = 0) => {
   return `${mm}:${ss}.${ms}`;
 };
 
-function formatTime() {
+function updateClock() {
   const now = new Date();
   const hours = now.getHours();
   const minutes = now.getMinutes();
@@ -179,6 +179,18 @@ const reconnectToWS = () => {
 
   connect();
 }
+const checkOrientation = () => {
+  console.log("Checking orientation innerHeight:", window.innerHeight, 'innerWidth: ', window.innerWidth);
+  if (window.innerHeight > window.innerWidth) {
+    document.body.classList.add("portrait");
+  } else {
+    document.body.classList.remove("portrait");
+  }
+}
 
-setInterval(formatTime(), 10000);
-reconnectToWS();
+window.addEventListener("resize", checkOrientation);
+(() => {
+  setInterval(()=>updateClock(), 1000);
+  reconnectToWS();
+  checkOrientation();
+})()

@@ -16,12 +16,14 @@ body {
 body * {
     box-sizing: border-box;
 }
+
 #error {
     background-color: #ff0000;
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
+    z-index: 100;
 }
 
 .container {
@@ -38,10 +40,21 @@ body * {
     gap: 1rem;
 }
 
+.portrait .rpm-lights {
+    padding: 0;
+    gap: 0;
+    padding-bottom: 0.5rem;
+}
+
 .rpm-lights .rpm-dot {
-    height: 1rem;
+    height: 1.5rem;
     border-radius: 10%;
     background-color: #fff;
+}
+
+.portrait .rpm-lights .rpm-dot {
+    border-radius: 0%;
+    height: 2rem;
 }
 
 .rpm-lights.blink .rpm-dot {
@@ -76,9 +89,11 @@ body * {
 
 .column.center {
     grid-column: span 6;  
-    /* padding: 0 4rem; */
 }
-
+.portrait .column.center,
+.portrait .column.side {
+    grid-column: span 12;  
+}
 .column.side {
     grid-column: span 3;  
 }
@@ -90,6 +105,10 @@ body * {
     gap: 1rem;
     width: 100%;
     margin: 0 auto;
+}
+
+.portrait .tyres {
+    width: 55%;
 }
 
 .tyre {
@@ -118,8 +137,11 @@ body * {
 
 .fuel {
     padding-top: 1rem;
-    /* text-align: center; */
     display: flex;
+    justify-content: space-between;
+}
+
+.portrait .fuel {
     justify-content: space-between;
 }
 
@@ -207,11 +229,21 @@ body * {
 }
 
 .race-info:not(:last-child) {
-    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.portrait .race-info {
+    display: flex;
+    justify-content: space-between;
+}
+.portrait .race-info:not(:last-child) {
+    border-bottom: 1px solid #ffffff;
 }
 
 .race-info .label{
     margin: 0;
+    font-size: 1.5rem;
 }
 
 .race-info .value {
