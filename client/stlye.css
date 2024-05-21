@@ -117,6 +117,7 @@ body * {
     align-items: center;
     height: 7rem;
     background-color: #fff;
+    text-shadow: 0 0px 20px black;
 }
 
 .type.blue {
@@ -152,6 +153,9 @@ body * {
     height: 100%;
     width: 100%;
 }
+/* .portrait .gear-throttle-brake {
+    display: none;
+} */
 
 .pedals {
     display: flex;

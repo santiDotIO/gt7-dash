@@ -32,7 +32,7 @@ const calculateTyreTemp = (tempNum) => {
     return "blue"; // Low grip, low degradation - Blue
   } else if (tempNum >= 60 && tempNum <= 75) {
     return "green"; // Medium grip, low degradation - Green
-  } else if (tempNum >= 85 && tempNum <= 90) {
+  } else if (tempNum >= 75 && tempNum <= 90) {
     return "yellow"; // High grip, medium degradation - Yellow
   } else if (tempNum >= 90 && tempNum <= 95) {
     return "orange"; // Very high grip, high degradation - Orange
@@ -51,7 +51,7 @@ const timeFormat = (t = 0) => {
   return `${mm}:${ss}.${ms}`;
 };
 
-function updateClock() {
+const updateClock = () => {
   const now = new Date();
   const hours = now.getHours();
   const minutes = now.getMinutes();
